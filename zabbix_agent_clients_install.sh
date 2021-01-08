@@ -58,6 +58,6 @@ echo "zabbix agent client port is checking ....."
 }
 
 echo "zabbix agent clients install log" >> /etc/ansible/zabbix_agent_clients_install.log
-date >> /etc/ansible/zabbix_agent_clinets_install.log
+date >> /etc/ansible/zabbix_agent_clients_install.log
 zabbix_agent_clients_install >> /etc/ansible/zabbix_agent_clients_install.log
 echo "The zabbix-agent client install script is run end ..........."
