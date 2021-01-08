@@ -1,0 +1,15 @@
+- hosts：zabbix-agent
+  remote_user: root
+  vars:
+    server: 10.0.100.125
+	hostname: "{{ansible_hostname}}"
+  tasks:
+  - name: install rpm
+    command: rpm -ivh https://repo.zabbix.com/zabbix/5.0/rhel/7/x86_64/zabbix-agent-5.0.3-1.el7.x86_64.rpm
+  - name: install agent
+    command：yum install zabbix-agnet -y
+  - name: copy templates file zabbix_agentd.conf to zabbix agentd
+    template: src=/etc/ansible/zabbix_agentd.conf dest=/etc/zabbix/zabbix_agentd.conf
+  - name: restart zabbix-agent
+    command: systemctl restart zabbix-agent
+	

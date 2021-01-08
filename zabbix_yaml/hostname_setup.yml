@@ -1,0 +1,15 @@
+---
+- hosts: zabbix-agent-clients
+  user: root
+  gather_facts: true
+  tasks:
+- name: rsync dir filebeat
+  hostname: 'name={{ host_name }}'
+- name: add line
+  lineinfile:
+  dest: /etc/hosts
+  line: "{{ ansible_all_ipv4_addresses[0] }} {{ host_name }}"
+
+
+
+
