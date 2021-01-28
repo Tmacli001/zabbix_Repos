@@ -1,0 +1,3 @@
+#echo test file
+#you are welcome to koal !!!
+end
