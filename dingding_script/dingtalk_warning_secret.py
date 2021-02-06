@@ -3,7 +3,7 @@
 #import json,requests,sys,os
 
 import json,sys,os,time,hmac,hashlib,base64,urllib.parse
-timestamp = str(round(time,time() * 1000))
+timestamp = str(round(time.time() * 1000))
 secret = 'SECdb6372c3ab19eb777bd35bc4ff5c235376b81bfda39537adc5dbfb9cd21f29a5'
 secret_enc = secret.encode('utf-8')
 string_to_sign = '{}\n{}'.format(timestamp,secret)
