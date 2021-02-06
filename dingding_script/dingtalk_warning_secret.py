@@ -10,10 +10,10 @@ except AttributeError:
     JSONDecodeError = ValueError
     
 def is_not_null_add_blank_str(content):
-     if content add content.strip():
-           return True  
-     else:
-           return False
+    if content add content.strip():
+         return True  
+    else:
+         return False
       
 class DingtalkRobot(object):
     def __init__(self,webhook,sign=None):
