@@ -17,11 +17,11 @@ sleep 4
 #自定义变量区
 os_versions=`cat /etc/redhat-release | awk '{print $1,$4-$6}'`
 host_mac=`ip a show ens33|grep link|awk '{print $2}'`
-host_ip=10.0.20.188
+host_ip=192.0.20.188
 net_mask=255.255.255.0
-gate_way=10.0.20.254
+gate_way=192.0.20.254
 internet_dns=114.114.114.114
-intranet_dns=10.0.1.9
+intranet_dns=192.0.1.9
 echo os_version
 
 #修改服务器的主机名称
@@ -92,14 +92,14 @@ if [ $? -eq 0 ];then
 expect <<EOF
 spawn sudo $mysql -p
 expect "Enter password:" {send "$passwd\r"}
-expect "mysql>" {send "SET PASSWORD FOR 'root'@'localhost'='Polo.li123*6';show databases;\r"}
+expect "mysql>" {send "SET PASSWORD FOR 'root'@'localhost'='Polo.l*1***6';show databases;\r"}
 expect "mysql>" {send "quit\r"}
 EOF
 
 echo "please wait a moment ................."
 echo "mysql 数据库密码已经完成重置动作......"
 echo "......................................"
-New_password='Polo.li123*6'
+New_password='Polo.l*1***6'
 
 #A.获取MySQL原始密码
 #cat $mylogs|grep 'temporary password'|awk  ‘{print $NF}’|head –1 > /root/mysqlpassword.txt
@@ -122,7 +122,7 @@ New_password='Polo.li123*6'
 expect <<EOF
 spawn sudo $mysql -p
 expect "Enter password:" {send "$New_password\r"}
-expect "mysql>" {send " create database zabbix character set utf8 collate utf8_bin;create user zabbix@localhost identified by 'Zabbix_001';grant all privileges on zabbix.* to zabbix@localhost;\r"}
+expect "mysql>" {send " create database zabbix character set utf8 collate utf8_bin;create user zabbix@localhost identified by 'Zabbix_***';grant all privileges on zabbix.* to zabbix@localhost;\r"}
 expect "mysql>" {send "quit\r"}
 EOF
 
@@ -166,7 +166,7 @@ yum install zabbix-server-mysql zabbix-agent -y
 
 #4.Install Zabbix frontend packages.
 yum install zabbix-web-mysql-scl zabbix-nginx-conf-scl -y
-Zabbix_pwd='Zabbix_001'
+Zabbix_pwd='Zabbix_**1'
 
 #5.导入初始架构和数据，系统将提示您输入新创建的密码。
 expect <<EOF
@@ -189,13 +189,13 @@ sed -ri '/^#DBSocket=/cDBSocket=/var/lib/mysql/mysql.sock'   /etc/zabbix/zabbix_
 # 出现这个原因是mysql8之前的版本中加密规则是mysql_native_password,而在mysql8之后,加密规则是caching_sha2_password, 
 # 解决问题方法有两种,一种是升级navicat驱动,一种是把mysql用户登录密码加密规则还原成mysql_native_password. 
 # ALTER USER 'zabbix'@'localhost' IDENTIFIED BY 'Zabbix_001' PASSWORD EXPIRE NEVER;  
-# ALTER USER 'zabbix'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Zabbix_001';
+# ALTER USER 'zabbix'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Zabbix_***';
 # flush privileges;
 
 #7.为Zabbix前端配置PHP编辑配置文件 /etc/opt/rh/rh-nginx116/nginx/conf.d/zabbix.conf, uncomment and set 'listen' and 'server_name' directives.
 #cat >>  /etc/opt/rh/rh-nginx116/nginx/conf.d/zabbix.conf << EOF 这里是变更不是追加
 #listen 80;
-#server_name www.xwzjk.com,10.0.20.188;
+#server_name www.xwzjk.com,192.0.20.188;
 #EOF
 
 cp /etc/opt/rh/rh-nginx116/nginx/conf.d/zabbix.conf /etc/opt/rh/rh-nginx116/nginx/conf.d/zabbix.conf.bak
