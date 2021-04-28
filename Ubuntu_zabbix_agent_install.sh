@@ -7,7 +7,7 @@
 
 zabbix_agent_pkgs="zabbix-release_5.0-1%2Bbionic_all.deb"
 zabbix_config_files="zabbix_agentd.conf"
-zabbix_server_ip="10.0.100.*"
+zabbix_server_ip="192.100.100.*"
 host_name=`hostname`
 zabbix_client_info="/root/zabbix_info.txt"
 host_ip=`ip addr |grep ens33 |grep inet |awk '{print $2}'`
