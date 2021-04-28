@@ -38,7 +38,7 @@ make && make install
 /usr/local/web_server/nginx/sbin/nginx
 #5.nginx configure file
 
-#6.install mysql 
+#6.install mysql services
 
 wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
 yum -y install mysql80-community-release-el7-3.noarch.rpm
@@ -59,23 +59,23 @@ if [ $? -eq 0 ];then
 expect <<EOF
 spawn sudo $mysql -p
 expect "Enter password:" {send "$passwd\r"}
-expect "mysql>" {send "SET PASSWORD FOR 'root'@'localhost'='Polo.li123*6';show databases;\r"}
+expect "mysql>" {send "SET PASSWORD FOR 'root'@'localhost'='Polo.******6';show databases;\r"}
 expect "mysql>" {send "quit\r"}
 EOF
 echo "mysql 数据库正在处理处理一大波数据请稍后........."
 echo "mysql 数据库密码已经完成重置动作................."
 echo "................................................."
 
-New_password='Polo.li123*6'
+New_password='Polo.******6'
 
 expect <<EOF
 spawn sudo $mysql -p
 expect "Enter password:" {send "$New_password\r"}
-expect "mysql>" {send " create user zabbix@localhost identified by 'Zabbix_001';grant all privileges on zabbix.* to zabbix@localhost;\r"}
+expect "mysql>" {send " create user zabbix@localhost identified by 'Zabbix_##!';grant all privileges on zabbix.* to zabbix@localhost;\r"}
 expect "mysql>" {send "quit\r"}
 EOF
 
-Zabbix_pwd='Zabbix_001'
+Zabbix_pwd='Zabbix_###'
 echo "zabbix database setup is finished ........"
 }
 else
@@ -109,7 +109,7 @@ yum install zabbix-server-mysql zabbix-agent -y
 #passwd=`cat /root/mysqlpassword.txt`
 #登录MySQL 修改原始密码
 #$mysql -p$passwd << EOF
-#SET PASSWORD FOR 'root'@'localhost' = PASSWORD('Polo.li123*6');
+#SET PASSWORD FOR 'root'@'localhost' = PASSWORD('Polo.******6');
 #CREATE DATABASE service_chat DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 #EOF
 #用新变量来存储新密码
