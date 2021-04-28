@@ -25,7 +25,7 @@ LogFileSize=0
 
 ########## Option : server
 
-Server=10.0.20.188
+Server=192.100.20.188
 
 ######## Option : ListenPort
 
@@ -33,7 +33,7 @@ ListenPort=10050
 
 ######### Active checks related
 
-ServerActive=10.0.20.188
+ServerActive=192.100.20.188
 
 ######### Option : HostnameItem
 
