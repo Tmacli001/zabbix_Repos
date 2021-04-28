@@ -21,7 +21,7 @@ def msg(text):
    },
     "at": {
        "atMobiles": [
-           "18721967723" #需要@who？
+           "187********" #需要@who？
         ],
         "isAtALL": False
       }
