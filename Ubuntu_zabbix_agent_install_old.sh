@@ -39,8 +39,8 @@ cat >> /etc/zabbix/zabbix_agentd.conf << EOF
 PidFile=/var/run/zabbix/zabbix_agentd.pid
 LogFile=/var/log/zabbix/zabbix_agentd.log
 LogFileSize=0
-Server=10.0.100.125
-ServerActive=10.0.100.125
+Server=192.100.100.125
+ServerActive=192.100.100.125
 Hostname=$host_name
 TLSConnect=psk
 TLSAccept=psk
